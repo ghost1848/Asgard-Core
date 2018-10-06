@@ -1,0 +1,29 @@
+# # # # # # # # # # # # # # # # # # # # # # # #
+#              Use '&' for color.             #
+# # # # # # # # # # # # # # # # # # # # # # # #
+
+# Edit this for the discord message
+discord-message: "&b&lAsgard Factions &8\u00BB discord command test"
+
+# Edit this for the broadcast 
+broadcast-message: "&b&lAsgard Factions &8\u00BB &f"
+
+# Here you can edit the cooldowns for each of:
+
+golden-apple: 15
+
+ender-pearl: 15
+
+rank-gui-name: "&4&lRanks"
+
+Ranks:
+    - "ELITE"
+    - "HERO"
+    - "LEGENDARY"
+    - "GOD"
+    
+Price:
+    - 5
+    - 10
+    - 25
+    - 40

@@ -1,0 +1,28 @@
+main: com.asgard.core.Core
+version: 1.0
+name: AsgardCore
+authors: [ghost1848, Yerti]
+depend: [Vault]
+softdepend: [Essentials]
+description: This is the core of the server.
+
+commands:
+    Discord:
+        description: Gets the discord link.
+        usage: /Discord
+        aliases: [discord, Disc, disc]
+        
+    AsgardFactions:
+        description: Displays commands.
+        usage: /AsgardFactions
+        aliases: [asgardfactions, AF, Af, af]
+        
+    Buy:
+        description: Purchase ranks.
+        usage: /Buy
+        aliases: [buy]
+        
+    Bounty:
+        description: Place a bounty on someone.
+        usage: /Bounty
+        aliases: [bounty]
