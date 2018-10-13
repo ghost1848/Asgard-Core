@@ -15,6 +15,7 @@ import com.asgard.core.cmd.CommandHandler;
 //import com.asgard.core.cooldowns.GoldenApple;
 import com.asgard.core.event.InventoryClick;
 import com.asgard.core.event.NoHopperCraft;
+import com.asgard.core.cooldowns.EnderPearl;
 
 import net.milkbowl.vault.economy.Economy;
 
@@ -66,6 +67,7 @@ public class Core extends JavaPlugin {
 		//new GoldenApple(this);
 		new InventoryClick(this);
 		new NoHopperCraft(this);
+		new EnderPearl(this);
 		
 		msg = "";
 		loadConfig();
