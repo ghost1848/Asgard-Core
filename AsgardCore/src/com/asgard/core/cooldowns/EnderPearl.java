@@ -14,61 +14,59 @@ import com.asgard.core.Core;
 import net.md_5.bungee.api.ChatColor;
 
 public class EnderPearl implements Listener {
-	
-	Core plugin;
-	
-	//Compares system time when put into hashmap to time when right click
-	public HashMap<UUID, Long> cooldown = new HashMap<UUID, Long>();
 
-	public EnderPearl(Core plugin) {
-		
-		this.plugin = plugin;
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-		
+	Core pl;
+
+	// Compares system time when put into hashmap to time when right click
+	public HashMap<UUID, Long> cooldown = new HashMap<>();
+
+	public EnderPearl(Core pl) {
+		this.pl = pl;
+		pl.getServer().getPluginManager().registerEvents(this, pl);
+
 	}
+
+	String cooldownMessage = pl.getConfig().getString("ender-pearl-cooldownMessage");
 
 	@EventHandler
 	public void onPlayerRightClick(PlayerInteractEvent e) {
 		
+		
+		
 		Player player = e.getPlayer();
-		String cooldownMessage = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("ender-pearl-cooldownMessage"));
+		
 		UUID uuid = e.getPlayer().getUniqueId();
+
+		String cooldownMessage = ChatColor.translateAlternateColorCodes('&', pl.getConfig().getString("ender-pearl-cooldownMessage"));
+
+		if (e.getItem().getType().equals(Material.ENDER_PEARL)) {
+
+
+
+
 		
-		cooldown.put(player.getUniqueId(), System.currentTimeMillis());
-		long elapsedTime =  (((cooldown.get(uuid) / 1000) + (plugin.getConfig().getInt("ender-pearl"))) - (System.currentTimeMillis() / 1000));
+		if (cooldown.get(uuid) == null) {
+			cooldown.put(uuid, System.currentTimeMillis());
+			return;
+		}
+		long elapsedTime =  (((cooldown.get(uuid) / 1000) + pl.getConfig().getInt("ender-pearl"))) - (System.currentTimeMillis() / 1000);
+		if (elapsedTime <= 0) {
+			//cooldown finished
+			//If person is not in hashmap, adds it. If player is in hashmap, updates it with the current time and uuid.
+			cooldown.put(uuid, System.currentTimeMillis());
+			return;
+		}
+
 		
-		if (e.getMaterial() == Material.ENDER_PEARL) {
+		e.setCancelled(true);
+		player.sendMessage(cooldownMessage.replace("{time}", elapsedTime + ""));
 		
-			while (elapsedTime > 0) {
-				
-				//e.setCancelled(false);
-				
-				try {
-					
-					elapsedTime -= 1;
-					Thread.sleep(1000);
-					e.setCancelled(true);
-					
-				} catch (InterruptedException ie) {}
-				
-				player.sendMessage(cooldownMessage.replace("{time}", elapsedTime + ""));
-				
-				if (elapsedTime <= 0) {
-					
-					//cooldown finished
-					//If person is not in hashmap, adds it. If player is in hashmap, updates it with the current time and uuid.
-					cooldown.put(uuid, System.currentTimeMillis());
-					e.setCancelled(false);
-					return;
-					
-				}
-				
-				
-	
-			}
-			
-		} else { return; }
 		
+		
+		
+		
+		}
+
 	}
 	
 }
