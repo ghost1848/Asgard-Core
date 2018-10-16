@@ -68,9 +68,6 @@ public class EnderPearl implements Listener {
 		}
 
 	}
-<<<<<<< Upstream, based on branch 'master' of https://github.com/ghost1848/Asgard-Core
-	//ju
-=======
->>>>>>> d22feb9 Fixed Enderpearl cooldown for real
+
 	
 }
