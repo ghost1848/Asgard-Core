@@ -1,6 +1,6 @@
-# # # # # # # # # # # # # # # # # # # # # # # #
+###############################################
 #              Use '&' for color.             #
-# # # # # # # # # # # # # # # # # # # # # # # #
+###############################################
 
 # Edit this for the discord message
 discord-message: "&b&lAsgard Factions &8\u00BB discord command test"
@@ -9,11 +9,14 @@ discord-message: "&b&lAsgard Factions &8\u00BB discord command test"
 broadcast-message: "&b&lAsgard Factions &8\u00BB &f"
 
 # Here you can edit the cooldowns for each of:
-#Measured in seconds
+
 golden-apple: 15
 
 ender-pearl: 15
+
 #{time} replaces with cooldown left
+golden-apple-cooldownMessage: "You still have {time} remaining!"
+
 ender-pearl-cooldownMessage: "You still have {time} ramaining!"
 
 rank-gui-name: "&4&lRanks"
@@ -22,7 +25,7 @@ Ranks:
     - "ELITE"
     - "HERO"
     - "LEGENDARY"
-    - "GOD"
+    - "GOD" 
     
 Price:
     - 5
