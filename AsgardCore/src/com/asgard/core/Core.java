@@ -12,10 +12,11 @@ import com.asgard.core.cmd.CmdBounty;
 import com.asgard.core.cmd.CmdBuy;
 import com.asgard.core.cmd.CmdDiscord;
 import com.asgard.core.cmd.CommandHandler;
+import com.asgard.core.cooldowns.EnderPearl;
+import com.asgard.core.cooldowns.GoldenApple;
 //import com.asgard.core.cooldowns.GoldenApple;
 import com.asgard.core.event.InventoryClick;
 import com.asgard.core.event.NoHopperCraft;
-import com.asgard.core.cooldowns.EnderPearl;
 
 import net.milkbowl.vault.economy.Economy;
 
@@ -60,18 +61,18 @@ public class Core extends JavaPlugin {
 	public void onEnable() {
 		
 		i = this;
+		loadConfig();
 		registerCommands();
 		
 		getServer().getConsoleSender().sendMessage(getEnableMsg());
-		getServer().getPluginManager().registerEvents(new CmdBounty(), this);
-		//new GoldenApple(this);
+		new CmdBounty(this);
+		new GoldenApple(this);
 		new InventoryClick(this);
 		new NoHopperCraft(this);
 		new EnderPearl(this);
 		
 		msg = "";
-		loadConfig();
-		
+				
 		if (!setupEconomy()) {
 			
 			getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
@@ -90,9 +91,9 @@ public class Core extends JavaPlugin {
 
 	public String getEnableMsg() {
 		
-		msg += "§b==================================\n";
-		msg += "                    §3Asgard§fCore §6has been enabled!\n";
-		msg += "                 §b==================================";
+		msg += "Â§b==================================\n";
+		msg += "                    Â§3AsgardÂ§fCore Â§6has been enabled!\n";
+		msg += "                 Â§b==================================";
 		
 		return msg;
 		
@@ -100,9 +101,9 @@ public class Core extends JavaPlugin {
 	
 	public String getDisableMsg() {
 		
-		msg += "§b===================================\n";
-		msg += "                    §3Asgard§fCore §6has been disabled!\n";
-		msg += "                 §b===================================";
+		msg += "Â§b===================================\n";
+		msg += "                    Â§3AsgardÂ§fCore Â§6has been disabled!\n";
+		msg += "                 Â§b===================================";
 		
 		return msg;
 		
@@ -111,7 +112,7 @@ public class Core extends JavaPlugin {
 	public void loadConfig() {
 		
 		getConfig().options().copyDefaults(true);
-		saveConfig();
+		this.saveResource("config.yml", false);
 		
 	}
 	
